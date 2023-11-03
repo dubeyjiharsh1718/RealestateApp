@@ -14,7 +14,7 @@ import {
   import Colors from "../constants/Colors";
   import Font from "../constants/Font";
   import { RadioButton,  } from 'react-native-paper';
-  
+  import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
   
   export default function VerifyWith() {
     const navigation = useNavigation();
@@ -27,7 +27,7 @@ import {
       <SafeAreaView style={styles.container}>
            <View style={styles.imageContainer}>
           <Image
-            source={require('../assets/images/login.png')}
+            source={require('../assets/images/forgotmessage.png')}
             style={styles.image}
           />
         </View>
@@ -39,13 +39,17 @@ import {
     value={selectedOption}
   >
     <View style={styles.radioButtonContainer}>
+      <View style={styles.VerifyWith}>
+    <Text style={styles.VerifyWithtext}>How Whould You like to verify Identify?  </Text></View>
       <View style={styles.radioButtonItem}>
-        <Text>Email : </Text>
         <RadioButton.Item label="" value="Email" />
+        <Text style={styles.phonetext}>Email  </Text>
+        <FontAwesome5 name="envelope" style={styles.phoneicon} />
       </View>
       <View style={styles.radioButtonItem}>
-        <Text>Phone Number: </Text>
         <RadioButton.Item label="" value="Phone Number" />
+        <Text style={styles.phonetext}>Phone Number </Text>
+        <FontAwesome5 name="phone" style={styles.phoneicon}  />
       </View>
     </View>
   </RadioButton.Group>
@@ -64,19 +68,7 @@ import {
     );
   };
   
-    // Define your styles in a separate object
     const styles = StyleSheet.create({
-      input: {
-        fontFamily: Font['poppins-regular'],
-        fontSize: FontSize.small,
-        paddingVertical: Spacing,
-        paddingHorizontal: Spacing * 2,
-        borderRadius: Spacing,
-        marginVertical: Spacing / 2,
-        borderWidth: 1,
-        width: 350,
-        height: 50,
-      },
       focusedInput: {
         borderWidth: 3,
         borderColor: Colors.primary,
@@ -93,7 +85,7 @@ import {
         centerContainer: {
           alignItems: "center",
           marginTop : 30,
-          borderTopLeftRadius: 50, // Add borderTopLeftRadius
+          borderTopLeftRadius: 50, 
           borderTopRightRadius: 50,
         },
         centermainContainer : {
@@ -116,6 +108,25 @@ import {
           color: Colors.primary,
           fontFamily: Font["poppins-bold"],
           marginVertical: Spacing * 2,
+        },
+        VerifyWith: {
+          width: 300,
+          height: 80, 
+          elevation: 3,
+          alignItems: 'center',
+          justifyContent: 'center', 
+          shadowColor: 'black',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.3,
+          shadowRadius: 2,
+          backgroundColor: 'white',
+          borderRadius: 10,
+          padding: 10, 
+          marginBottom:10,
+        },
+        VerifyWithText: {
+          textAlign: 'center', 
+          fontSize: 16, 
         },
         subTitle: {
           fontFamily: Font["poppins-semiBold"],
@@ -143,13 +154,20 @@ import {
           fontSize: FontSize.large,
         },
         radioButtonContainer: {
-            // flexDirection: 'row',
-            // alignItems: 'center',
-            // marginVertical: Spacing / 4,
           },
           radioButtonItem: {
             flexDirection: 'row',
             alignItems: 'center',
-            marginVertical: Spacing / 4,
+          },
+          phoneicon :{
+            fontSize: 20,
+            marginRight: 5,
+            color: '#15beae',
+          },
+          phonetext:{
+            color: 'black',
+          },
+          VerifyWithtext: {
+            color: 'black',
           },
       });

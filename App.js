@@ -15,19 +15,20 @@ import Home from './screen/Home';
 import CreateNewPassword from './screen/CreateNewPassword';
 import VerifyWith from './screen/VerifyWith';
 import PropertyDetailsScreen from './screen/ProppertyDetailsScreen';
+import HomeLandingpage from './screen/HomeLandingpage';
 import { NativeBaseProvider } from 'native-base';
+import ImageFullScreenScreen from './screen/ImageFullScreenScreen';
 
 const Stack = createStackNavigator();
 
 function App() {
   useEffect(() => {
-    // Simulate a delay for the splash screen (e.g., 2 seconds)
     const splashTimer = setTimeout(() => {
       SplashScreen.hide();
     }, 1000);
 
     return () => clearTimeout(splashTimer);
-  }, []); // The empty dependency array ensures this effect runs only once
+  }, []); 
 
   return (
     <NativeBaseProvider>
@@ -42,7 +43,8 @@ function App() {
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="CreateNewPassword" component={CreateNewPassword} />
           <Stack.Screen name="VerifyWith" component={VerifyWith} />
-          {/* <Stack.Screen name="DrawerNavigator" component={DrawerNavigator} /> */}
+          <Stack.Screen name="HomeScreen" component={HomeLandingpage} />
+           <Stack.Screen name="ImageFullScreen" component={ImageFullScreenScreen} /> 
           <Stack.Screen name="PropertyDetails" component={PropertyDetailsScreen} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>

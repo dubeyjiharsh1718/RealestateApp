@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, Animated } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity, ScrollView, Animated } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { PinchGestureHandler, State } from 'react-native-gesture-handler';
 import Swiper from 'react-native-swiper';
 import Colors from "../constants/Colors";
-import Font from "../constants/Font";
+import COLORS from '../assets/const/colors';
+import Font from '../constants/Font';
+import FontSize from '../constants/FontSize';
 import Spacing from "../constants/Spacing";
+import ImageFullScreenScreen from './ImageFullScreenScreen';
 
-function PropertyDetailsScreen({ route }) {
+function PropertyDetailsScreen({ route, navigation }) {
   const { property } = route.params;
   const [scale, setScale] = useState(new Animated.Value(1));
+
+  const onImagePress = (imageUrl) => {
+    navigation.navigate('ImageFullScreen', { imageUrl });
+  };
 
   const onPinchEvent = Animated.event(
     [{ nativeEvent: { scale: scale } }],
@@ -29,24 +36,26 @@ function PropertyDetailsScreen({ route }) {
     <ScrollView style={styles.container}>
       <Swiper style={styles.imageContainer}>
         {property.allimages.map((allimages, index) => (
-          <View key={index} style={styles.propertyImg}>
-            <PinchGestureHandler
-              onGestureEvent={onPinchEvent}
-              onHandlerStateChange={onPinchStateChange}
-            >
-              <Animated.View style={styles.propertyImg}>
-                <Animated.Image
-                  source={allimages}
-                  style={[
-                    styles.propertyImage,
-                    {
-                      transform: [{ scale: scale }],
-                    },
-                  ]}
-                />
-              </Animated.View>
-            </PinchGestureHandler>
-          </View>
+          <TouchableOpacity key={index} onPress={() => onImagePress(allimages)}>
+            <View style={styles.propertyImg}>
+              <PinchGestureHandler
+                onGestureEvent={onPinchEvent}
+                onHandlerStateChange={onPinchStateChange}
+              >
+                <Animated.View style={styles.propertyImg}>
+                  <Animated.Image
+                    source={allimages}
+                    style={[
+                      styles.propertyImage,
+                      {
+                        transform: [{ scale: scale }],
+                      },
+                    ]}
+                  />
+                </Animated.View>
+              </PinchGestureHandler>
+            </View>
+          </TouchableOpacity>
         ))}
       </Swiper>
       <View style={styles.iconRow}>
@@ -77,11 +86,26 @@ function PropertyDetailsScreen({ route }) {
         <Text style={styles.propertyDescription}>Description:</Text>
         <Text style={styles.propertyDescriptionText}>{property.description}</Text>
       </View>
-      <View style={styles.propertyRow}>
-        <TouchableOpacity style={styles.booknowBtn}>
-          <Text style={styles.booknowText}>Book Now</Text>
+      <FlatList
+  data={property.allimages}
+  renderItem={({ item, index }) => (
+    <TouchableOpacity onPress={() => onImagePress(item)}>
+      <View style={styles.optionCardtopsearch}>
+        <Image source={item.source} style={styles.optionCardImagetop} />
+        <Text style={{ marginTop: 11, fontSize: 18, color: COLORS.dark }}>{item.title}</Text>
+      </View>
+    </TouchableOpacity>
+  )}
+  contentContainerStyle={styles.optionListContainertop}
+  showsHorizontalScrollIndicator={false}
+/>
+
+      <View style={styles.centerContainer}>
+        <TouchableOpacity style={styles.signInButton}>
+          <Text style={styles.signInText}>Book Now</Text>
         </TouchableOpacity>
       </View>
+   
     </ScrollView>
   );
 }
@@ -150,11 +174,21 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     color: 'black',
   },
-  booknowBtn: {
-    width: '100%', // Adjust the width as needed
-    height: 50,  // Adjust the height as needed
+  centerContainer: {
+    alignItems: "center",
+    marginTop : 10,
+    borderTopLeftRadius: 50, 
+    borderTopRightRadius: 50,
+    marginBottom: 30,
+  },
+  locationContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 5,
+  },
+  signInButton: {
+    width: 350,
     padding: Spacing,
-    marginTop: 16,
     backgroundColor: "#15beae",
     borderRadius: Spacing,
     shadowColor: Colors.primary,
@@ -164,17 +198,15 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.3,
     shadowRadius: Spacing,
+    elevation: 3, // Add elevation for Android
+    marginTop: 20, // Add some top margin to separate it from other content
   },
-  booknowText :{
+  
+  signInText: {
     fontFamily: Font["poppins-bold"],
     color: "white",
     textAlign: "center",
-    // fontSize: FontSize.large,
-  },
-  locationContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 5,
+    fontSize: FontSize.large,
   },
   locationIcon: {
     fontSize: 16,
@@ -208,6 +240,28 @@ const styles = StyleSheet.create({
   iconWithText: {
     alignItems: 'center',
   },
+  optionCardtopsearch: {
+    height: 100,
+    width: 100,
+    elevation: 15,
+    backgroundColor: COLORS.white,
+    alignItems: 'center',
+    borderRadius: 10,
+    paddingTop: 10,
+    marginTop:20,
+    marginRight: 10,
+    marginBottom: 15,
+    paddingHorizontal: 10,
+},
+optionCardImagetop: {
+  height: 80,
+  borderRadius: 10,
+  width: '100%',
+},
+optionListContainertop: {
+  flexDirection: 'row',
+paddingHorizontal: 20,
+},
 });
 
 export default PropertyDetailsScreen;

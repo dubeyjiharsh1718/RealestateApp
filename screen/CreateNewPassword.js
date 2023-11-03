@@ -26,12 +26,14 @@ import {
       <SafeAreaView style={styles.container}>
            <View style={styles.imageContainer}>
           <Image
-            source={require('../assets/images/login.png')}
+            source={require('../assets/images/resetpassword.png')}
             style={styles.image}
           />
         </View>
         <View style={styles.centermainContainer}>
         <View style={styles.centerContainer}>
+        <View style={styles.VerifyWith}>
+    <Text style={styles.VerifyWithText}>Reset Password</Text></View>
         <TextInput
             onFocus={() => setFocusedPassword(true)}
             onBlur={() => setFocusedPassword(false)}
@@ -94,10 +96,23 @@ import {
          
           backgroundColor: '#15beae',
         },
+        VerifyWith: {
+          width: 130,
+          height: 80,
+          borderRadius: 10,
+          padding: 10,
+          marginBottom: 10,
+          alignItems: 'flex-start', 
+        },
+        VerifyWithText: {
+          fontSize: 22,
+          color: 'black',
+          textAlign: 'left', 
+        },
         centerContainer: {
           alignItems: "center",
           marginTop : 30,
-          borderTopLeftRadius: 50, // Add borderTopLeftRadius
+          borderTopLeftRadius: 50, 
           borderTopRightRadius: 50,
         },
         centermainContainer : {

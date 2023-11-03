@@ -3,9 +3,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Profile from './Profile';
 import PropertyListScreen from './PropertyListScreen';
 import Icon from 'react-native-vector-icons/FontAwesome'; 
+import HomeLandingpage from './HomeLandingpage';
 
 const profile = 'Profile';
 const propertylist = "PropertyList";
+const homelandingpage = "HomeLandingpage"
 const Tab = createBottomTabNavigator();
 
 const Home = () => {
@@ -17,12 +19,22 @@ const Home = () => {
       }}
     >
       <Tab.Screen
-        name={propertylist}
-        component={PropertyListScreen}
+        name={homelandingpage}
+        component={HomeLandingpage}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
             <Icon name="home" color={color} size={size} /> 
+          ),
+        }}
+      />
+        <Tab.Screen
+        name={propertylist}
+        component={PropertyListScreen}
+        options={{
+          tabBarLabel: 'Property List',
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="building" color={color} size={size} /> 
           ),
         }}
       />
