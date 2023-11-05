@@ -2,7 +2,6 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Profile from './Profile';
 import PropertyListScreen from './PropertyListScreen';
-import Icon from 'react-native-vector-icons/FontAwesome'; 
 import HomeLandingpage from './HomeLandingpage';
 
 const profile = 'Profile';

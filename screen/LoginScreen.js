@@ -19,6 +19,10 @@ import {
     const navigation = useNavigation();
     const [focusedEmail, setFocusedEmail] = useState(false);
     const [focusedPassword, setFocusedPassword] = useState(false);
+    
+    const handleplacescreenPress = () => {
+    navigation.navigate('OwnerLandpage');
+      };
 
   const handleCreateAccountPress  = () => {
     navigation.navigate('SignupScreen');
@@ -64,7 +68,7 @@ import {
           <Text style={styles.ForgotpassText}>Forgot your password ?</Text>
         </TouchableOpacity>
         <View style={styles.centerContain}>
-          <TouchableOpacity style={styles.signInButton}>
+          <TouchableOpacity style={styles.signInButton} onPress={handleplacescreenPress} >
             <Text style={styles.signInText}>Sign in</Text>
           </TouchableOpacity>
         </View>

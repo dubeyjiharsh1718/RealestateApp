@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  StyleSheet,
-} from 'react-native';
+import { StyleSheet,} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import LoginScreen from './screen/LoginScreen';
 import SignupScreen from './screen/SignupScreen';
@@ -18,6 +16,10 @@ import PropertyDetailsScreen from './screen/ProppertyDetailsScreen';
 import HomeLandingpage from './screen/HomeLandingpage';
 import { NativeBaseProvider } from 'native-base';
 import ImageFullScreenScreen from './screen/ImageFullScreenScreen';
+import PlacesScreen from './screen/PlacesScreen';
+import OwnerLanddpage from './screen/Ownerpage/OwnerLandpage';
+import Alltenents from './screen/Ownerpage/Alltenents';
+
 
 const Stack = createStackNavigator();
 
@@ -45,6 +47,9 @@ function App() {
           <Stack.Screen name="VerifyWith" component={VerifyWith} />
           <Stack.Screen name="HomeScreen" component={HomeLandingpage} />
            <Stack.Screen name="ImageFullScreen" component={ImageFullScreenScreen} /> 
+           <Stack.Screen name="PlacesScreen" component={PlacesScreen} /> 
+           <Stack.Screen name="OwnerLandpage" component={OwnerLanddpage} />
+           <Stack.Screen name="Alltenents" component={Alltenents} />
           <Stack.Screen name="PropertyDetails" component={PropertyDetailsScreen} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
