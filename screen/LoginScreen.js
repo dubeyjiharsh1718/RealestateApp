@@ -21,7 +21,7 @@ import {
     const [focusedPassword, setFocusedPassword] = useState(false);
     
     const handleplacescreenPress = () => {
-    navigation.navigate('OwnerLandpage');
+    navigation.navigate('OwnerHome');
       };
 
   const handleCreateAccountPress  = () => {

@@ -1,16 +1,15 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Profile from './Profile';
-import PropertyListScreen from './PropertyListScreen';
-import HomeLandingpage from './HomeLandingpage';
+// import Profile from './Profile';
+import OwnerLanddpage from './OwnerLandpage';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const profile = 'Profile';
-const propertylist = "PropertyList";
-const homelandingpage = "HomeLandingpage"
+// const profile = 'Profile';
+// const propertylist = "PropertyList";
+const Ownerhomelandpage = "OwnerHome"
 const Tab = createBottomTabNavigator();
 
-const Home = () => {
+const OwnerHome = () => {
   return (
     <Tab.Navigator
     screenOptions={{headerShown : false}}
@@ -19,8 +18,8 @@ const Home = () => {
       }}
     >
       <Tab.Screen
-        name={homelandingpage}
-        component={HomeLandingpage}
+        name={Ownerhomelandpage}
+        component={OwnerLanddpage}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
@@ -28,7 +27,7 @@ const Home = () => {
           ),
         }}
       />
-        <Tab.Screen
+        {/* <Tab.Screen
         name={propertylist}
         component={PropertyListScreen}
         options={{
@@ -47,9 +46,9 @@ const Home = () => {
             <Icon name="user" color={color} size={size} />
           ),
         }}
-      />
+      /> */}
     </Tab.Navigator>
   );
 };
 
-export default Home;
+export default OwnerHome;

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image, TextInput, StyleSheet, Dimensions, PanResponder,
   Animated, } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import AwesomeIcon from "react-native-vector-icons/FontAwesome5"
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import COLORS from '../../assets/const/colors';
 import { PinchGestureHandler, State } from 'react-native-gesture-handler';

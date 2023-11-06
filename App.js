@@ -19,6 +19,8 @@ import ImageFullScreenScreen from './screen/ImageFullScreenScreen';
 import PlacesScreen from './screen/PlacesScreen';
 import OwnerLanddpage from './screen/Ownerpage/OwnerLandpage';
 import Alltenents from './screen/Ownerpage/Alltenents';
+import OwnerHome from './screen/Ownerpage/OwnerHome';
+import Createnewproperty from './screen/Ownerpage/Createnewproperty';
 
 
 const Stack = createStackNavigator();
@@ -43,12 +45,14 @@ function App() {
           <Stack.Screen name="PropertyList" component={PropertyListScreen} />
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="OwnerHome" component={OwnerHome} />
           <Stack.Screen name="CreateNewPassword" component={CreateNewPassword} />
           <Stack.Screen name="VerifyWith" component={VerifyWith} />
           <Stack.Screen name="HomeScreen" component={HomeLandingpage} />
            <Stack.Screen name="ImageFullScreen" component={ImageFullScreenScreen} /> 
            <Stack.Screen name="PlacesScreen" component={PlacesScreen} /> 
            <Stack.Screen name="OwnerLandpage" component={OwnerLanddpage} />
+           <Stack.Screen name="Createnewproperty" component={Createnewproperty} />
            <Stack.Screen name="Alltenents" component={Alltenents} />
           <Stack.Screen name="PropertyDetails" component={PropertyDetailsScreen} options={{ headerShown: false }} />
         </Stack.Navigator>

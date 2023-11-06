@@ -33,6 +33,9 @@ const OwnerLanddpage = ({ navigation }) => {
     const handlAlltenentPress = () => {
       navigation.navigate('Alltenents');
     };
+    const handluploadpropertyPress = () => {
+        navigation.navigate('Createnewproperty');
+      };
     const isFocused = useIsFocused();
 
     function backActionHandler() {
@@ -65,6 +68,7 @@ const OwnerLanddpage = ({ navigation }) => {
             <View style={styles.container}>
                 <TouchableOpacity
                    style={styles.item}
+                   onPress={handluploadpropertyPress}
                   >
                   <Image source={require('../../assets/images/addproperty.jpg')} style={styles.image} />
                   <Text>Add Property</Text>
@@ -78,6 +82,7 @@ const OwnerLanddpage = ({ navigation }) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                    style={styles.item}
+                   
                   >
                   <Image source={require('../../assets/images/transaction.jpg')} style={styles.image} />
                   <Text>Add Transaction</Text>
