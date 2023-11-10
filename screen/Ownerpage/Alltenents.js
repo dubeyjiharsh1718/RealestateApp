@@ -124,11 +124,6 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: 'white',
   },
-  header: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 16,
-  },
   itemContainer: {
     flexDirection: 'row',
     borderWidth: 1,
@@ -152,12 +147,6 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     borderRadius: 8,
   },
-  detailsContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between', 
-    marginBottom: 5,
-  },
   locationContainer: {
     flexDirection: 'row', 
     alignItems: 'center',
@@ -176,15 +165,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
     borderRadius: 10,
-},
-sortbtn: {
-    backgroundColor: "#15beae",
-    height: 50,
-    width: 50,
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 10,
 },
 ownerhii: {
     marginLeft: 25,

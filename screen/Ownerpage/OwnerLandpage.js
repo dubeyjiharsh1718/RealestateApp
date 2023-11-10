@@ -1,34 +1,30 @@
-import React from 'react'
+import React from 'react';
 import {
-    SafeAreaView,
-    StyleSheet,
-    Dimensions,
-    StatusBar,
-    FlatList,
-    ScrollView,
-    Pressable,
-    TextInput,
-    BackHandler,
-    TouchableOpacity,
-    Alert,
-    Image,
-    View,
-    Text
-} from 'react-native'
-import { useBackHandler } from '@react-native-community/hooks'
-import { useNavigation } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/MaterialIcons'
-import EntypoIcon from 'react-native-vector-icons/Entypo'
-import { useIsFocused } from '@react-navigation/native'
-import COLORS from '../../assets/const/colors'
+  SafeAreaView,
+  StyleSheet,
+  StatusBar,
+  FlatList,
+  ScrollView,
+  Pressable, 
+  BackHandler,
+  TouchableOpacity,
+  Alert,
+  Image,
+  View,
+  Text,
+} from 'react-native';
+import { useBackHandler } from '@react-native-community/hooks';
+import EntypoIcon from 'react-native-vector-icons/Entypo';
+import { useIsFocused } from '@react-navigation/native';
+import COLORS from '../../assets/const/colors';
 
 
-const { width } = Dimensions.get("screen");
+
+// const { width } = Dimensions.get("screen");
 
 const OwnerLanddpage = ({ navigation }) => {
     var location = "Kalyan";
     var PersonName = "Harsh Dubey";
-    //LogBox.ignoreAllLogs();
 
     const handlAlltenentPress = () => {
       navigation.navigate('Alltenents');
@@ -60,6 +56,7 @@ const OwnerLanddpage = ({ navigation }) => {
     
     const ListOptions = () => {
         return (
+          <ScrollView>
             <View style={styles.ownerLandpage}>
             <View style={styles.ownerhii}>
               <Text style={styles.hiiowner}>Hii, Owner!</Text>
@@ -127,7 +124,7 @@ const OwnerLanddpage = ({ navigation }) => {
             </View>
             
           </View>
-            
+          </ScrollView>
         );
     }
 
@@ -165,21 +162,6 @@ const OwnerLanddpage = ({ navigation }) => {
                 </View>
             </View>
             <ScrollView showsVerticalScrollIndicator={false}>
-                {/* <View
-                    style={{
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        paddingHorizontal: 20,
-                    }}>
-                    <View style={styles.searchInputContainer}>
-                        <Icon name="search" size={25} color={"#15beae"} />
-                        <TextInput placeholder='Search address, city, location' />
-                    </View>
-                    <View style={styles.sortbtn}>
-                        <Icon name='tune' color={COLORS.white} size={25} />
-                    </View>
-
-                </View> */}
                 <ListOptions />
 
                 <FlatList
@@ -235,24 +217,6 @@ const styles = StyleSheet.create({
         width: 50,
         borderRadius: 25,
     },
-    searchInputContainer: {
-        backgroundColor: COLORS.light,
-        height: 50,
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: 20,
-        borderRadius: 10,
-    },
-    sortbtn: {
-        backgroundColor: "#15beae",
-        height: 50,
-        width: 50,
-        borderRadius: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginLeft: 10,
-    },
     ownerhii: {
         marginLeft: 25,
         marginTop: 20,
@@ -263,9 +227,6 @@ const styles = StyleSheet.create({
     },
     ownerwelcome : {
         fontSize: 16,
-    },
-    titleforadd:{
-        textAlign: "center",
     },
     totalProperty: {
         fontSize: 17, 

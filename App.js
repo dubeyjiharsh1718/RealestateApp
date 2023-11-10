@@ -21,6 +21,7 @@ import OwnerLanddpage from './screen/Ownerpage/OwnerLandpage';
 import Alltenents from './screen/Ownerpage/Alltenents';
 import OwnerHome from './screen/Ownerpage/OwnerHome';
 import Createnewproperty from './screen/Ownerpage/Createnewproperty';
+import Profileowner from './screen/Ownerpage/Profileowner';
 
 
 const Stack = createStackNavigator();
@@ -54,6 +55,7 @@ function App() {
            <Stack.Screen name="OwnerLandpage" component={OwnerLanddpage} />
            <Stack.Screen name="Createnewproperty" component={Createnewproperty} />
            <Stack.Screen name="Alltenents" component={Alltenents} />
+           <Stack.Screen name="Profileowner" component={Profileowner} />
           <Stack.Screen name="PropertyDetails" component={PropertyDetailsScreen} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>

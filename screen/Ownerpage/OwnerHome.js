@@ -1,11 +1,10 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-// import Profile from './Profile';
+import Profileowner from './Profileowner';
 import OwnerLanddpage from './OwnerLandpage';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-// const profile = 'Profile';
-// const propertylist = "PropertyList";
+const profileowner = 'Profileowner'
 const Ownerhomelandpage = "OwnerHome"
 const Tab = createBottomTabNavigator();
 
@@ -27,26 +26,16 @@ const OwnerHome = () => {
           ),
         }}
       />
-        {/* <Tab.Screen
-        name={propertylist}
-        component={PropertyListScreen}
-        options={{
-          tabBarLabel: 'Property List',
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="building" color={color} size={size} /> 
-          ),
-        }}
-      />
-      <Tab.Screen
-        name={profile}
-        component={Profile}
+        <Tab.Screen
+        name={profileowner}
+        component={Profileowner}
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
-            <Icon name="user" color={color} size={size} />
+            <Icon name="bars" color={color} size={size} /> 
           ),
         }}
-      /> */}
+      />
     </Tab.Navigator>
   );
 };

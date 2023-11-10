@@ -14,6 +14,7 @@ import Spacing from "../constants/Spacing";
 import FontSize from "../constants/FontSize";
 import Colors from "../constants/Colors";
 import Font from "../constants/Font";
+import axios from 'axios';
 
 export default function LoginScreen() {
   const navigation = useNavigation();
@@ -23,11 +24,62 @@ export default function LoginScreen() {
   const [focusedPassword, setFocusedPassword] = useState(false);
   const [selectedOption, setSelectedOption] = useState('Owner');
 
+const handleSignUp = async () => {
+  try {
+    // Validate name
+    if (!userData.requestData.fullName.trim()) {
+      console.error('Name is required');
+      return;
+    }
+
+    // Validate mobile number
+    const mobileRegex = /^[0-9]{10}$/;
+    if (!mobileRegex.test(userData.requestData.mobileNumber)) {
+      console.error('Invalid mobile number');
+      return;
+    }
+
+    // Validate email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(userData.requestData.emailId)) {
+      console.error('Invalid email address');
+      return;
+    }
+
+    // Validate password
+    if (userData.requestData.password.length < 6) {
+      console.error('Password must be at least 6 characters long');
+      return;
+    }
+
+    // Rest of your signup logic
+    const response = await axios.post('https://hraprojectwa.azurewebsites.net/users/register', userData, {
+      headers: {
+        'Content-Type': 'application/json',
+        accept: '*/*',
+      },
+    });
+
+    if (response.status === 200) {
+      console.log('Registration successful');
+      console.log('response', response);
+      console.log('userdata', userData);
+    } else {
+      console.error('Registration failed');
+      console.log('response', response);
+    }
+  } catch (error) {
+    console.error('Error during registration:', error.response);
+  }
+};
+
+
   const handleAlreadyAccountPress = () => {
     navigation.navigate('Login');
   };
 
   const handleOtpscreenPress = () => {
+    handleSignUp();
     navigation.navigate('OTPScreen');
   };
 
@@ -42,43 +94,38 @@ export default function LoginScreen() {
       <View style={styles.centermainContainer}>
         <View style={styles.centerContainer}>
           <TextInput
+            name="fullname"
             onFocus={() => setFocusedName(true)}
             onBlur={() => setFocusedName(false)}
             placeholder="Name"
-            placeholderTextColor={Colors.darkText}
-            style={[
-              styles.input,
-              focusedName && styles.focusedInput,
-            ]}
+            placeholderTextColor="darkText"
+            style={[styles.input, focusedName && styles.focusedInput]}
           />
 
           <TextInput
+            name="mobile"
             onFocus={() => setFocusedMobile(true)}
             onBlur={() => setFocusedMobile(false)}
             placeholder="Mobile Number"
-            placeholderTextColor={Colors.darkText}
-            style={[
-              styles.input,
-              focusedMobile && styles.focusedInput,
-            ]}
+            placeholderTextColor="darkText"
+            style={[styles.input, focusedMobile && styles.focusedInput]}
           />
 
           <TextInput
+            name="email"
             onFocus={() => setFocusedEmail(true)}
             onBlur={() => setFocusedEmail(false)}
             placeholder="Email"
-            placeholderTextColor={Colors.darkText}
-            style={[
-              styles.input,
-              focusedEmail && styles.focusedInput,
-            ]}
+            placeholderTextColor="darkText"
+            style={[styles.input, focusedEmail && styles.focusedInput]}
           />
 
           <TextInput
+            name="pasword"
             onFocus={() => setFocusedPassword(true)}
             onBlur={() => setFocusedPassword(false)}
             placeholder="Password"
-            placeholderTextColor={Colors.darkText}
+            placeholderTextColor="darkText"
             style={[
               styles.input,
               focusedPassword && styles.focusedInput,
@@ -86,27 +133,30 @@ export default function LoginScreen() {
             secureTextEntry={true}
           />
           <View>
-      {/* <Text>Are you an:</Text> */}
-      <RadioButton.Group
-        onValueChange={(value) => setSelectedOption(value)}
-        value={selectedOption}
-      >
-        <View style={styles.radioButtonContainer}>
-          <RadioButton.Item label="Owner" value="Owner" />
-          <RadioButton.Item label="Tenant" value="Tenant" />
+            <RadioButton.Group
+              onValueChange={(value) => setSelectedOption(value)}
+              value={selectedOption}
+            >
+              <View style={styles.radioButtonContainer}>
+                <RadioButton.Item label="Owner" value="Owner" />
+                <RadioButton.Item label="Tenant" value="Tenant" />
+              </View>
+            </RadioButton.Group>
+          </View>
         </View>
-      </RadioButton.Group>
-    </View>
-        </View>
-        <TouchableOpacity style={styles.createAccount} onPress={handleAlreadyAccountPress}>
-          <Text style={styles.createAccountText}>Already have an account ?</Text>
+        <TouchableOpacity
+          style={styles.createAccount}
+          onPress={handleAlreadyAccountPress}
+        >
+          <Text style={styles.createAccountText}>
+            Already have an account ?
+          </Text>
         </TouchableOpacity>
         <View style={styles.centerContainer}>
           <TouchableOpacity style={styles.signInButton} onPress={handleOtpscreenPress}>
             <Text style={styles.signInText}>Sign up</Text>
           </TouchableOpacity>
         </View>
-
         <View style={styles.centerContainer}>
           <Text style={styles.continueWith}>Or continue with</Text>
           <View style={styles.socialButtonContainer}>
@@ -134,6 +184,7 @@ export default function LoginScreen() {
     </SafeAreaView>
   );
 }
+
 
     const styles = StyleSheet.create({
       input: {
@@ -180,15 +231,6 @@ export default function LoginScreen() {
         width: 180,
         height: 180,
         borderRadius : 50,
-      },
-      forgotPassword: {
-        fontFamily: Font['poppins-semiBold'],
-        fontSize: FontSize.small,
-        color: Colors.primary,
-        alignSelf: 'flex-end',
-        marginRight: 10,
-        marginTop: 10,
-        marginBottom: 10,
       },
       signInButton: {
         width: 350,
