@@ -167,12 +167,6 @@ import {
           fontFamily: Font["poppins-bold"],
           marginVertical: Spacing * 2,
         },
-        subTitle: {
-          fontFamily: Font["poppins-semiBold"],
-          fontSize: FontSize.large,
-          maxWidth: "60%",
-          textAlign: "center",
-        },
         forgotPassword: {
           fontFamily: Font["poppins-semiBold"],
           fontSize: FontSize.small,
@@ -229,11 +223,6 @@ import {
           color: Colors.primary,
           textAlign: "center",
           fontSize: FontSize.small,
-        },
-        socialButtonsContainer: {
-          marginTop: Spacing,
-          flexDirection: "row",
-          justifyContent: "center",
         },
         socialButton: {
           padding: Spacing,

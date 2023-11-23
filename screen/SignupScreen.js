@@ -24,54 +24,40 @@ export default function LoginScreen() {
   const [focusedPassword, setFocusedPassword] = useState(false);
   const [selectedOption, setSelectedOption] = useState('Owner');
 
-const handleSignUp = async () => {
-  try {
-    // Validate name
-    if (!userData.requestData.fullName.trim()) {
-      console.error('Name is required');
-      return;
+  const handleSignUp = async () => {
+    const response='';
+    try {
+      const userData = {
+        requestId: '12345',
+        requestData: {
+          fullName: 'Abhi Dubey',
+          mobileNumber: '98765410',
+          emailId: 'abhi@gmail.com',
+          password: 'abhi',
+          role: 'tenant',
+          ownerId: null,
+        },
+      };
+  
+      response = await axios.post('https://hraprojectwa.azurewebsites.net/users/register', userData, {
+        headers: {
+          'Content-Type': 'application/json',
+          accept: '*/*',
+        },
+      });
+  
+      if (response.status === 200) {
+        console.log('Registration successful');
+        console.log('response', response);
+        console.log('userdata', userData);
+      } else {
+        console.error('Registration failed');
+        console.log('response', response);
+      }
+    } catch (error) {
+      console.error('Error during registration:', error.response);
     }
-
-    // Validate mobile number
-    const mobileRegex = /^[0-9]{10}$/;
-    if (!mobileRegex.test(userData.requestData.mobileNumber)) {
-      console.error('Invalid mobile number');
-      return;
-    }
-
-    // Validate email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(userData.requestData.emailId)) {
-      console.error('Invalid email address');
-      return;
-    }
-
-    // Validate password
-    if (userData.requestData.password.length < 6) {
-      console.error('Password must be at least 6 characters long');
-      return;
-    }
-
-    // Rest of your signup logic
-    const response = await axios.post('https://hraprojectwa.azurewebsites.net/users/register', userData, {
-      headers: {
-        'Content-Type': 'application/json',
-        accept: '*/*',
-      },
-    });
-
-    if (response.status === 200) {
-      console.log('Registration successful');
-      console.log('response', response);
-      console.log('userdata', userData);
-    } else {
-      console.error('Registration failed');
-      console.log('response', response);
-    }
-  } catch (error) {
-    console.error('Error during registration:', error.response);
   }
-};
 
 
   const handleAlreadyAccountPress = () => {

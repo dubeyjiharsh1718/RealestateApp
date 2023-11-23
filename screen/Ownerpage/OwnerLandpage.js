@@ -50,10 +50,7 @@ const OwnerLanddpage = ({ navigation }) => {
     }
 
     useBackHandler(isFocused ? backActionHandler:()=>false);
-
   
-
-    
     const ListOptions = () => {
         return (
           <ScrollView>
